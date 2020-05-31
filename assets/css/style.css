@@ -1,0 +1,8 @@
+#nowPlayingBarContainer {
+  width: 100%;
+  height: 100px;
+  background-color: #282828;
+  bottom: 0;
+  position: fixed;
+  min-width: 620px;
+}

@@ -28,8 +28,12 @@ function sanitizeFormPassword($inputText) {
       $password = sanitizeFormPassword($_POST['password']);
       $confPassword = sanitizeFormPassword($_POST['confPassword']);
 
-      $account->register($username, $firstname, $lastname, $email, $confemail, $password, $confPassword);
+      $wasSuccessful = $account->register($username, $firstname, $lastname, $email, $confemail, $password, $confPassword);
 
+      if($wasSuccessful == true) {
+		      $_SESSION['userLoggedIn'] = $username;
+		        header("Location: index.php");
+	   }
     }
 
  ?>
