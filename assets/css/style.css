@@ -8,6 +8,13 @@ body {
 * {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
+  letter-spacing: 1px;
+}
+
+body {
+  background-color: #181818;
+  font-size: 14px;
+  min-width: 720px;
 }
 
 #nowPlayingBarContainer {
@@ -158,5 +165,92 @@ body {
   top: 0;
   left: 0;
 
+}
 
+.navBar {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  -ms-flex-direction: column;
+}
+
+.logo {
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.logo img {
+  width: 64px;
+}
+
+.navBar .group {
+  border-top: 1px solid #a0a0a0;
+  padding: 10px 0;
+}
+
+.navItem {
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  display: block;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.navItemLink {
+  color: #a0a0a0;
+  text-decoration: none;
+}
+
+.navItemLink:hover {
+  color: #fff;
+}
+
+.navItemLink .searchIcon {
+  position: absolute;
+  right: 0;
+  top: 6px;
+  width: 25px;
+}
+
+#mainViewContainer {
+  margin-left: 220px;
+  padding-bottom: 90px;
+  width: calc(100%-220px);
+}
+
+#mainContent {
+  padding: 0 20px;
+}
+
+.pageHeadingBig {
+  padding: 20px;
+  text-align: center;
+}
+
+.gridViewItem {
+  display: inline-block;
+  margin-right: 20px;
+  width: 29%;
+  max-width: 200px;
+  min-width: 150px;
+  margin-bottom: 20px;
+}
+
+.gridViewItem img {
+  width: 100%;
+}
+
+.gridViewInfo {
+  font-weight: 300;
+  text-align: center;
+  padding: 5px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.gridViewItem a {
+  text-decoration: none;
 }
