@@ -7,18 +7,63 @@ else {
   header("Location: index.php");
 }
 
-$albumQuery = mysqli_query($con, "SELECT * FROM albums WHERE id='$albumId'");
-$album = mysqli_fetch_array($albumQuery);
+$album = new Album($con, $albumId);
 
-$artistId = $album['artist'];
-
-$artistQuery = mysqli_query($con, "SELECT * FROM artists WHERE id ='$artistId'");
-$artist = mysqli_fetch_array($artistQuery);
-
-echo $artist['name'] . "<br>";
-echo $album['title'];
-
+$artist = $album->getArtist();
 ?>
+
+<div class="albumInfo">
+  <div class="leftSection">
+    <img src="<?php echo $album->getArtworkPath(); ?>" alt="">
+  </div>
+
+  <div class="rightSection">
+    <h2><?php echo $album->getTitle(); ?></h2>
+    <p>By <?php echo $artist->getName(); ?></p>
+    <p><?php echo $album->getNumberofSongs(); ?> songs</p>
+  </div>
+
+</div>
+
+<div class="trackListContainer">
+  <ul class="trackList">
+    <?php
+      $songIdArray = $album->getSongIds();
+
+      $i = 1;
+
+      foreach($songIdArray as $songId){
+        $albumSong = new Songs($con, $songId);
+        $albumArtist = $albumSong->getArtist();
+        echo "<li class='trackListRow'>
+              <div class='trackCount'>
+                <img class='playButton' src='assets/images/icons/play-white.png'>
+                <span class='trackNumber'>$i</span>
+              </div>
+
+              <div class='trackInfo'>
+                <span class='trackName'>" . $albumSong->getTitle() . "</span>
+                <span class='artistName'>" . $albumArtist->getName() . "</span>
+
+              </div>
+
+              <div class='trackOptions'>
+                <img class='optionsButton' src='assets/images/icons/more.png'>
+              </div>
+
+              <div class='trackDuration'>
+                <span class='duration'>" . $albumSong->getDuration() . "</span>
+              </div>
+
+
+        </li>";
+        $i++;
+      }
+
+
+     ?>
+  </ul>
+</div>
 
 
 

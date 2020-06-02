@@ -1,5 +1,8 @@
 <?php
 include("includes/config.php");
+include("includes/classes/Artist.php");
+include("includes/classes/Album.php");
+include("includes/classes/Songs.php");
 
 //session_destroy(); LOGOUT
 
