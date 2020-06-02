@@ -40,6 +40,7 @@ body {
 }
 
 #nowPlayingRight {
+  display: flex;
   position: relative;
   margin-top: 16px;
 }
