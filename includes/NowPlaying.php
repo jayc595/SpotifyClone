@@ -1,3 +1,33 @@
+<?php
+
+  $songQuery = mysqli_query($con, "SELECT id FROM songs ORDER BY RAND() LIMIT 10");
+
+  $resultArray = array();
+
+  while($row = mysqli_fetch_array($songQuery)) {
+    array_push($resultArray, $row['id']);
+  }
+
+$jsonArray = json_encode($resultArray);
+ ?>
+
+ <script>
+
+  $(document).ready(function() {
+     currentPlaylist = <?php echo $jsonArray; ?>;
+     audioElement = new Audio();
+     setTrack(currentPlaylist[0], currentPlaylist, true);
+  });
+
+  function setTrack(trackId, newPlaylist, play){
+      audioElement.setTrack("assets/music/Artist/NoFaithInBrooklyn.mp3");
+      audioElement.play();
+
+  }
+ </script>
+
+
+
 <div id="nowPlayingBarContainer">
 <div id="nowPlayingBar">
     <div id="nowPlayingLeft">

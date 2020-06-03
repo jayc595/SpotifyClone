@@ -20,8 +20,18 @@ else {
     <title>Welcome to my Spotify Clone</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="assets/js/script.js"></script>
+
   </head>
   <body>
+
+		<script>
+			var audioElement = new Audio();
+			audioElement.setTrack(""); //assets/music/ScottHolmes/InspirationalOutlook.mp3
+			audioElement.audio.play();
+
+		</script>
 		<div id="mainContainer">
 			<div id="topContainer">
 
