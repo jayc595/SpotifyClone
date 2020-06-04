@@ -16,14 +16,53 @@ $jsonArray = json_encode($resultArray);
   $(document).ready(function() {
      currentPlaylist = <?php echo $jsonArray; ?>;
      audioElement = new Audio();
-     setTrack(currentPlaylist[0], currentPlaylist, true);
+     setTrack(currentPlaylist[0], currentPlaylist, false);
   });
 
   function setTrack(trackId, newPlaylist, play){
-      audioElement.setTrack("assets/music/Artist/NoFaithInBrooklyn.mp3");
-      audioElement.play();
+      $.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
 
-  }
+        var track = JSON.parse(data);
+
+        $(".trackName span").text(track.title);
+
+
+          $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
+            var artist = JSON.parse(data);
+
+            $(".artistName span").text(artist.name);
+          });
+
+          $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
+            var album = JSON.parse(data);
+
+            $(".albumLink img").attr("src", album.artworkPath);
+          });
+
+        audioElement.setTrack(track);
+        playSong();
+      });
+
+      if(play) {
+        audioElement.play();
+      }
+    }
+      function playSong(){
+        if(audioElement.audio.currentTime == 0) {
+          $.post("includes/handlers/ajax/updatePlays.php", { songId: audioElement.currentlyPlaying.id });
+        }
+
+        $(".controlButton.play").hide();
+        $(".controlButton.pause").show();
+        audioElement.play();
+      }
+      function pauseSong(){
+        $(".controlButton.play").show();
+        $(".controlButton.pause").hide();
+        audioElement.audio.pause();
+      }
+
+
  </script>
 
 
@@ -33,16 +72,16 @@ $jsonArray = json_encode($resultArray);
     <div id="nowPlayingLeft">
         <div class="content">
           <span class="albumlink">
-            <img src="https://blog.spoongraphics.co.uk/wp-content/uploads/2017/01/thumbnail-2.jpg" class="albumArtwork">
+            <img src="" class="albumArtwork">
           </span>
           <div class="trackInfo">
 
             <span class="trackName">
-              <span>Track Name</span>
+              <span></span>
             </span>
 
             <span class="artistName">
-              <span>Artist Name</span>
+              <span></span>
             </span>
 
           </div>
@@ -60,11 +99,11 @@ $jsonArray = json_encode($resultArray);
           <img src="assets/images/icons/previous.png" alt ="Previous">
         </button>
 
-        <button class="controlButton play" title="Play Button">
+        <button class="controlButton play" title="Play Button" onclick="playSong()">
           <img src="assets/images/icons/play.png" alt ="Play">
         </button>
 
-        <button class="controlButton pause" title="Pause Button" style="display: none;">
+        <button class="controlButton pause" title="Pause Button" style="display: none;" onclick="pauseSong()">
           <img src="assets/images/icons/pause.png" alt ="Pause">
         </button>
 

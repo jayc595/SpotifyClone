@@ -4,7 +4,7 @@ include("includes/classes/Artist.php");
 include("includes/classes/Album.php");
 include("includes/classes/Songs.php");
 
-//session_destroy(); LOGOUT
+// session_destroy(); //LOGOUT
 
 if(isset($_SESSION['userLoggedIn'])) {
 	$userLoggedIn = $_SESSION['userLoggedIn'];
@@ -25,13 +25,6 @@ else {
 
   </head>
   <body>
-
-		<script>
-			var audioElement = new Audio();
-			audioElement.setTrack(""); //assets/music/ScottHolmes/InspirationalOutlook.mp3
-			audioElement.audio.play();
-
-		</script>
 		<div id="mainContainer">
 			<div id="topContainer">
 
