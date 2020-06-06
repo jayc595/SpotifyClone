@@ -115,7 +115,7 @@ $jsonArray = json_encode($resultArray);
   function setShuffle(){
 
     shuffle = !shuffle;
-    var imageName = shuffle ? "shuffle.png" : "shuffle-active.png";
+    var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
     $(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
 
     if(shuffle == true) {
@@ -127,14 +127,16 @@ $jsonArray = json_encode($resultArray);
     }
   }
 
-  function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+  function shuffleArray(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
     }
 }
+
   function setTrack(trackId, newPlaylist, play){
 
     if(newPlaylist != currentPlaylist) {
@@ -153,29 +155,30 @@ $jsonArray = json_encode($resultArray);
       $.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
 
         var track = JSON.parse(data);
-
         $(".trackName span").text(track.title);
-
 
           $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
             var artist = JSON.parse(data);
 
-            $(".artistName span").text(artist.name);
+            $(".trackInfo .artistName span").text(artist.name);
+            $(".trackInfo .artistName span").attr("onclick", "openPage('artists.php?id=" + artist.id + "')");
           });
 
           $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
             var album = JSON.parse(data);
-
             $(".albumLink img").attr("src", album.artworkPath);
+            $(".albumLink img").attr("onclick", "openPage('album.php?id=" + album.id + "')");
+            $(".trackName span").attr("onclick", "openPage('album.php?id=" + album.id + "')");
           });
 
         audioElement.setTrack(track);
-        playSong();
+
+        if(play) {
+          playSong();
+        }
       });
 
-      if(play) {
-        audioElement.play();
-      }
+
     }
       function playSong(){
         if(audioElement.audio.currentTime == 0) {
@@ -201,16 +204,16 @@ $jsonArray = json_encode($resultArray);
     <div id="nowPlayingLeft">
         <div class="content">
           <span class="albumlink">
-            <img src="" class="albumArtwork">
+            <img role="link" tabindex="0" src="" class="albumArtwork">
           </span>
           <div class="trackInfo">
 
             <span class="trackName">
-              <span></span>
+              <span role="link" tabindex="0"></span>
             </span>
 
             <span class="artistName">
-              <span></span>
+              <span role="link" tabindex="0"></span>
             </span>
 
           </div>

@@ -369,5 +369,144 @@ body {
 .trackListRow .trackInfo .trackName {
   color: #fff;
   margin-bottom: 7px;
+}
 
+.artistInfo {
+  text-align: center;
+
+}
+
+.artistImage img {
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+}
+
+.btn {
+    width: 220px;
+    height: 50px;
+    border: 1px solid #fff;
+    outline: none;
+    color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.btn:before {
+    content: '';
+    background: linear-gradient(45deg, #7CFC00, #7FFF00, #32CD32, #00FF00, #228B22, #008000, #006400, #ADFF2F, #9ACD32);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.btn:active {
+    color: #transparent;
+}
+
+.btn:active:after {
+    background: transparent;
+}
+
+.btn:hover:before {
+    opacity: 1;
+}
+
+.btn:hover {
+  border: none;
+}
+
+.btn:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.borderBottom {
+  border-bottom: 1px solid #939393;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.artistsHeading {
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.button {
+  color: #fff;
+  cursor: pointer;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  font-weight: 500;
+  letter-spacing: 2px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  padding: 15px;
+  min-width: 130px;
+}
+
+[role="link"] {
+  cursor: pointer;
+}
+
+.searchContainer {
+  background-color: #242424;
+  padding: 20px 20px;
+}
+
+.searchContainer h4 {
+  margin: 0;
+  font-weight: 300px;
+}
+
+.searchContainer .searchInput {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 60px;
+  letter-spacing: 2px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.searchResult {
+  padding: 15px 10px;
+}
+
+.searchResult:hover {
+  background-color: #282828;
 }
