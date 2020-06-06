@@ -12,6 +12,7 @@ else {
 $album = new Album($con, $albumId);
 
 $artist = $album->getArtist();
+$artistId = $artist->getId();
 ?>
 
 <div class="albumInfo">
@@ -21,7 +22,7 @@ $artist = $album->getArtist();
 
   <div class="rightSection">
     <h2><?php echo $album->getTitle(); ?></h2>
-    <p>By <?php echo $artist->getName(); ?></p>
+    <p role="link" tabindex="0" onclick="openPage('artists.php?id=$artistId')">By <?php echo $artist->getName(); ?>
     <p><?php echo $album->getNumberofSongs(); ?> songs</p>
   </div>
 
@@ -67,7 +68,6 @@ $artist = $album->getArtist();
      <script>
        var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
        tempPlaylist = JSON.parse(tempSongIds);
-       console.log(tempPlaylist);
      </script>
   </ul>
 </div>

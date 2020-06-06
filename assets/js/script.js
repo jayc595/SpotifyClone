@@ -7,8 +7,13 @@ var currentIndex = 0;
 var repeat = false;
 var shuffle = false;
 var userLoggedIn;
+var timer;
 
 function openPage(url) {
+  if(timer != null){
+    clearTimeout(timer);
+  }
+
   if(url.indexOf("?") == -1){
     url = url + "?";
   }
@@ -93,5 +98,18 @@ function Audio(){
   }
   this.setTime  = function(seconds){
     this.audio.currentTime = seconds;
+  }
+}
+
+function deletePlaylist(playlistId){
+  var prompt = confirm("Are you sure?");
+  if(prompt == true){
+    $.post("includes/handlers/ajax/deletePlaylist.php", { playlistId: playlistId }).done(function(error) {
+      if (error != "") {
+        alert(error);
+        return;
+      }
+      openPage("playlist.php");
+    });
   }
 }

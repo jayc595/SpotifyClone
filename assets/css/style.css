@@ -510,3 +510,26 @@ input:focus {
 .searchResult:hover {
   background-color: #282828;
 }
+
+.noResultsdiv span {
+  margin: 15px;
+  text-align: center;
+  font-weight: 200;
+  font-size: 30px;
+  font-style: bold;
+  display: block;
+}
+
+.buttonItems .btn {
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.playlistsContainer {
+  padding: 10px 0;
+}
+
+.playlistImage {
+  border: 3px solid #282828;
+  padding: 10px;
+}

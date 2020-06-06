@@ -19,7 +19,7 @@ onfocus="var val=this.value; this.value=''; this.value= val;">
  <script>
  $(".searchInput").focus();
    $(function() {
-     var timer;
+     
      $(".searchInput").keyup(function(){
        clearTimeout(timer);
 
@@ -34,7 +34,7 @@ onfocus="var val=this.value; this.value=''; this.value= val;">
  </script>
 
      <?php
-       $songsQuery = mysqli_query($con, "SELECT id FROM songs WHERE title LIKE '$term%' LIMIT 10");
+       $songsQuery = mysqli_query($con, "SELECT id FROM songs WHERE title LIKE '%$term%' LIMIT 10");
        $songIdArray = array();
        $i = 1;
 
@@ -85,7 +85,7 @@ onfocus="var val=this.value; this.value=''; this.value= val;">
       </script>
 
    <?php
-    $artistsQuery = mysqli_query($con, "SELECT id FROM artists WHERE name LIKE '$term%' LIMIT 10");
+    $artistsQuery = mysqli_query($con, "SELECT id FROM artists WHERE name LIKE '%$term%' LIMIT 10");
 
     if(mysqli_num_rows($artistsQuery) >= 1) {
       echo "<div class='artistsContainer borderBottom'><h1 class='artistsHeading'>Artists</h1></div>";
@@ -110,7 +110,7 @@ onfocus="var val=this.value; this.value=''; this.value= val;">
     <div class="gridViewContainer">
 
     	<?php
-    		$albumQuery = mysqli_query($con, "SELECT * FROM albums WHERE title LIKE '$term%' LIMIT 10");
+    		$albumQuery = mysqli_query($con, "SELECT * FROM albums WHERE title LIKE '%$term%' LIMIT 10");
 
         if(((mysqli_num_rows($artistsQuery) == 0) && mysqli_num_rows($songsQuery) == 0) && mysqli_num_rows($albumQuery) == 0) {
           echo "<div class='noResultsdiv'><span class='noResults'>No results found matching your query: " . $term . "</span></div>";
