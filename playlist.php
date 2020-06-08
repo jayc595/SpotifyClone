@@ -4,8 +4,10 @@ include("includes/includedFiles.php");
 
  <script>
  document.getElementById("myP").style.display = "none";
+ document.getElementById("buttonHide").style.display= "block";
 function myFunction() {
   document.getElementById("myP").style.display = "block";
+  document.getElementById("buttonHide").style.display= "none";
 }
 function anotherFunction(){
   var nameOfPlaylist = document.getElementById("playlistName").value;
@@ -34,14 +36,15 @@ function anotherFunction(){
    <div class="gridViewContainer">
      <h2 class="artistsHeading">Playlists</h2>
      <div class="buttonItems">
+       <div id="buttonHide">
        <button class="btn" onclick="myFunction()">New Playlist</button>
+     </div>
        <div id="myP">
        <div class="searchContainer">
          <input type="text" class="searchInput" id="playlistName" value="" placeholder="Playlist name" visibility="hidden">
        </div>
        <button class="btn" onclick="anotherFunction()">Add</button>
      </div>
-
    </div>
 
    <?php

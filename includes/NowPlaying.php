@@ -138,7 +138,7 @@ $jsonArray = json_encode($resultArray);
 }
 
   function setTrack(trackId, newPlaylist, play){
-
+    
     if(newPlaylist != currentPlaylist) {
       currentPlaylist = newPlaylist;
       shufflePlaylist = currentPlaylist.slice();

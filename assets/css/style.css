@@ -41,7 +41,6 @@ body {
 
 #nowPlayingRight {
   display: flex;
-  position: relative;
   margin-top: 16px;
 }
 
@@ -123,7 +122,7 @@ body {
 
 
 .playbackBar .progressBar {
-  margin-top: 3px;
+  margin-top: 6px;
 }
 
 #nowPlayingLeft .albumArtwork {
@@ -532,4 +531,81 @@ input:focus {
 .playlistImage {
   border: 3px solid #282828;
   padding: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.optionsMenu {
+	font-family: monospace;
+  position: fixed;
+  display: none;
+
+}
+
+.dropdownOptions {
+  background: #fff;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+  border: 2px solid #000;
+
+}
+
+.item {
+	color: #fff;
+  background: #000;
+	display: block;
+  position: relative;
+	padding: 1rem;
+	text-decoration: none;
+  transition-duration: 0.5s;
+}
+
+.item a {
+  color: #fff;
+}
+
+.item:hover {
+	background: #181818;
+	cursor: pointer;
+}
+
+.dropdown {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul li ul {
+	visibility: hidden;
+  opacity: 0;
+  min-width: 1rem;
+	position: absolute;
+  transition: all 0.5s ease;
+  top: 0;
+	left: 135px;
+  display: none;
+}
+
+.dropdownOptions .item:hover > .dropdown,
+.dropdownOptions .item .dropdown:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+ul li ul li {
+	clear: both;
+  width: 100%;
+}
+
+.trackOptions {
+  cursor: pointer;
+}
+
+.trackName,
+.artistName,
+.trackInfo {
+  cursor: pointer;
 }
